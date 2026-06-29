@@ -1,0 +1,19 @@
+domain_label: "PharmaOps"
+entity_label: "Account"
+interaction_placeholder: "Paste meeting notes or CRM updates here..."
+demo_interaction:
+  entity_name: "Sample Hospital"
+  text: "Sample Hospital's prescription volume dropped 40% last quarter. Renewal in 28 days."
+sample_scenarios:
+  - label: "Risk Signal"
+    entity_name: "Demo Clinic"
+    text: "Demo Clinic is evaluating competitors."
+  - label: "Escalation Required"
+    entity_name: "Sample Hospital"
+    text: "Sample Hospital's prescription volume dropped 60% last quarter."
+  - label: "Competitor Formulary Deal"
+    entity_name: "Demo Hospital"
+    text: "Demo Hospital signed a competitor formulary deal."
+value_metric:
+  label: "Annual Value"
+  per_approved_nba: 500000

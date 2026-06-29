@@ -60,11 +60,19 @@ def add_decision(
 
     # ── Entity node ────────────────────────────────────────────────────────
     if not graph.has_node(entity_name):
-        graph.add_node(entity_name, node_type="entity", decisions=0, approvals=0)
+        graph.add_node(entity_name, node_type="entity", decisions=0, approved=0, rejected=0, intents=set())
     n = graph.nodes[entity_name]
     n["decisions"] = n.get("decisions", 0) + 1
     if approved:
-        n["approvals"] = n.get("approvals", 0) + 1
+        n["approved"] = n.get("approved", 0) + 1
+    else:
+        n["rejected"] = n.get("rejected", 0) + 1
+    # Accumulate intents seen for this entity
+    intents_set = n.get("intents", set())
+    if isinstance(intents_set, list):
+        intents_set = set(intents_set)
+    intents_set.add(intent)
+    n["intents"] = intents_set
 
     # ── Entity → Intent edge ───────────────────────────────────────────────
     if graph.has_edge(entity_name, intent):
@@ -114,7 +122,8 @@ def get_entity_context(domain_slug: str, entity_name: str, intent: str) -> list[
         n = graph.nodes[entity_name]
         decisions = n.get("decisions", 0)
         if decisions > 0:
-            approval_rate = round(n.get("approvals", 0) / decisions, 2)
+            approved_count = n.get("approved", n.get("approvals", 0))  # backward compat
+            approval_rate = round(approved_count / decisions, 2)
             context.append({
                 "type": "entity_history",
                 "entity": entity_name,

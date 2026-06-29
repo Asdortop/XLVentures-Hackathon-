@@ -1,0 +1,60 @@
+actions:
+  - id: schedule_rep_visit
+    intents: [rep_visit_needed]
+    keywords: [visit, meeting, discussion]
+    action: "Schedule representative visit within 7 days"
+    owner: "Sales Representative"
+    action_type: meeting
+    priority: medium
+    base_confidence: 0.80
+    estimated_hours: 2
+  - id: escalate_to_regional_manager
+    intents: [escalation_required]
+    keywords: [escalate, regional, manager]
+    action: "Escalate account to regional manager within 48 hours"
+    owner: "Regional Manager"
+    action_type: escalation
+    priority: critical
+    base_confidence: 0.90
+    estimated_hours: 1
+  - id: initiate_counter_offer
+    intents: [competitor_formulary]
+    keywords: [competitor, formulary, deal]
+    action: "Initiate counter-offer review within 24 hours"
+    owner: "Sales Representative"
+    action_type: review
+    priority: high
+    base_confidence: 0.85
+    estimated_hours: 2
+  - id: review_discount_request
+    intents: [discount_request]
+    keywords: [discount, price, reduction]
+    action: "Review discount request and provide response within 3 days"
+    owner: "Sales Representative"
+    action_type: review
+    priority: medium
+    base_confidence: 0.75
+    estimated_hours: 1
+  - id: monitor_prescription_volume
+    intents: [prescription_volume_drop]
+    keywords: [prescription, volume, drop]
+    action: "Monitor account's prescription volume and adjust strategy as needed"
+    owner: "Sales Representative"
+    action_type: monitoring
+    priority: low
+    base_confidence: 0.60
+    estimated_hours: 0.5
+  - id: obtain_vp_approval
+    intents: [high_value_account]
+    keywords: [high, value, account]
+    action: "Obtain VP approval before offering any discount"
+    owner: "VP of Sales"
+    action_type: approval
+    priority: critical
+    base_confidence: 0.95
+    estimated_hours: 1
+fallback:
+  action: "Review account and schedule check-in"
+  owner: "Sales Representative"
+  priority: medium
+  base_confidence: 0.50

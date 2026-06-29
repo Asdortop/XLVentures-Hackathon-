@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { useApp } from './context'
 
 export default function CommandCenter() {
-  const { domain } = useApp()
+  const { domain, domains } = useApp()
   const [outcomes, setOutcomes] = useState<any>(null)
   const [interactions, setInteractions] = useState<any[]>([])
   const [recentNBAs, setRecentNBAs] = useState<any[]>([])
@@ -28,12 +28,70 @@ export default function CommandCenter() {
   const sevColor = (s: string) => ({ critical: 'var(--sev-critical)', high: '#f97316', medium: 'var(--sev-medium)', low: 'var(--sev-low)' }[s] || 'var(--text-secondary)')
 
   if (!domain) return (
-    <div className="empty-state">
-      <div className="empty-icon">⬡</div>
-      <div className="empty-title">No Domain Selected</div>
-      <div className="empty-desc">Select a domain from the sidebar or <Link href="/onboarding" style={{ color: 'var(--indigo-light)' }}>onboard a new company</Link></div>
+    <div style={{ maxWidth: 720, margin: '0 auto', padding: '48px 24px', textAlign: 'center' }}>
+
+      {/* Hero */}
+      <div style={{ fontSize: 52, marginBottom: 20, filter: 'drop-shadow(0 0 24px rgba(99,102,241,0.5))' }}>⬡</div>
+      <h1 style={{ fontSize: 32, fontWeight: 800, background: 'linear-gradient(135deg, #fff 30%, var(--indigo-light))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', marginBottom: 12, lineHeight: 1.2 }}>
+        Welcome to Praxis AI
+      </h1>
+      <p style={{ fontSize: 14, color: 'var(--indigo-light)', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: 20, fontWeight: 600 }}>
+        Agentic Decision Intelligence
+      </p>
+      <p style={{ fontSize: 15, color: 'var(--text-secondary)', lineHeight: 1.7, maxWidth: 520, margin: '0 auto 40px', }}>
+        Paste any business signal — a meeting note, email, or CRM update — and six AI agents
+        reason over it live to give you ranked, evidence-backed Next Best Actions.
+        The platform learns from every decision your team makes.
+      </p>
+
+      {/* Flow Chart */}
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 0, marginBottom: 48, flexWrap: 'wrap' }}>
+        {[
+          { step: '01', label: 'Add Domain', icon: '⊕', desc: 'Describe your business' },
+          { step: '02', label: 'Submit Signal', icon: '✦', desc: 'Paste any interaction' },
+          { step: '03', label: '6 Agents Run', icon: '⬡', desc: 'Live reasoning pipeline' },
+          { step: '04', label: 'Review NBA', icon: '★', desc: 'Approve or reject' },
+        ].map((item, i, arr) => (
+          <div key={item.step} style={{ display: 'flex', alignItems: 'center' }}>
+            <div style={{
+              background: 'rgba(99,102,241,0.08)',
+              border: '1px solid rgba(99,102,241,0.25)',
+              borderRadius: 12,
+              padding: '16px 20px',
+              minWidth: 120,
+              transition: 'border-color 0.2s',
+            }}>
+              <div style={{ fontSize: 20, marginBottom: 6 }}>{item.icon}</div>
+              <div style={{ fontSize: 11, color: 'var(--indigo-light)', fontWeight: 700, letterSpacing: '0.08em', marginBottom: 4 }}>{item.step}</div>
+              <div style={{ fontSize: 13, fontWeight: 700, color: 'var(--text-primary)', marginBottom: 4 }}>{item.label}</div>
+              <div style={{ fontSize: 11, color: 'var(--text-muted)' }}>{item.desc}</div>
+            </div>
+            {i < arr.length - 1 && (
+              <div style={{ padding: '0 8px', color: 'var(--indigo-light)', fontSize: 18, opacity: 0.6 }}>→</div>
+            )}
+          </div>
+        ))}
+      </div>
+
+      {/* Memory callout */}
+      <div style={{ background: 'rgba(99,102,241,0.06)', border: '1px solid rgba(99,102,241,0.18)', borderRadius: 10, padding: '14px 24px', marginBottom: 36, fontSize: 13, color: 'var(--text-secondary)', display: 'inline-block' }}>
+        🧠 <span style={{ color: 'var(--text-primary)', fontWeight: 600 }}>Memory learns over time</span> — every approval and rejection improves future recommendations
+      </div>
+
+      {/* CTA */}
+      <div style={{ display: 'flex', gap: 12, justifyContent: 'center' }}>
+        <Link href="/onboarding">
+          <button className="btn btn-primary" style={{ fontSize: 15, padding: '12px 28px' }}>⊕ Add Your Domain →</button>
+        </Link>
+        {domains.length > 0 && (
+          <button className="btn btn-ghost" onClick={() => {}} style={{ fontSize: 14 }}>
+            or select from sidebar
+          </button>
+        )}
+      </div>
     </div>
   )
+
 
   return (
     <div>

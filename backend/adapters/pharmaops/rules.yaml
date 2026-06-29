@@ -1,0 +1,9 @@
+severity_keywords:
+  critical: [urgent, escalate, competitor]
+  high: [concern, dropping, declining]
+  medium: [question, wondering]
+  low: [update, fyi]
+deadline_warning_hours: 48
+rejection_count_critical: 3
+prescription_volume_drop_threshold: 50
+high_value_account_threshold: 500000

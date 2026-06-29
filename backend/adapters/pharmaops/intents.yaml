@@ -1,0 +1,25 @@
+intents:
+  - id: rep_visit_needed
+    label: Rep Visit Needed
+    keywords: [visit, meeting, discussion]
+    description: Account requires a representative visit
+  - id: escalation_required
+    label: Escalation Required
+    keywords: [escalate, regional, manager]
+    description: Account needs to be escalated to regional manager
+  - id: competitor_formulary
+    label: Competitor Formulary
+    keywords: [competitor, formulary, deal]
+    description: Competitor has signed a formulary deal with a hospital or clinic
+  - id: discount_request
+    label: Discount Request
+    keywords: [discount, price, reduction]
+    description: Account is requesting a discount
+  - id: prescription_volume_drop
+    label: Prescription Volume Drop
+    keywords: [prescription, volume, drop]
+    description: Account's prescription volume has dropped significantly
+  - id: high_value_account
+    label: High Value Account
+    keywords: [high, value, account]
+    description: Account has a high annual value

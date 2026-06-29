@@ -1,0 +1,32 @@
+domain_name: "PharmaOps"
+primary_entity: "Account"
+entities:
+  - id: account
+    label: Account
+    primary: true
+  - id: hospital
+    label: Hospital
+  - id: clinic
+    label: Clinic
+  - id: contact
+    label: Contact
+  - id: regional_manager
+    label: Regional Manager
+  - id: competitor
+    label: Competitor
+relationships:
+  - from: account
+    to: hospital
+    type: has_hospital
+  - from: account
+    to: clinic
+    type: has_clinic
+  - from: account
+    to: contact
+    type: has_contact
+  - from: account
+    to: regional_manager
+    type: has_regional_manager
+  - from: account
+    to: competitor
+    type: has_competitor

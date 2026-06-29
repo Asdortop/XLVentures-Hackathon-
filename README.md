@@ -4,6 +4,25 @@
 
 ---
 
+## 👥 Team
+
+| Name | Role |
+|---|---|
+| **Tejas G** | Full-Stack & AI Systems |
+| **Pranav Talupula** | Backend & Agent Pipeline |
+| **Rushindra M** | Frontend & UX |
+
+---
+
+## 🔗 Links
+
+| | Link |
+|---|---|
+| 🚀 **Live Deployment** | [https://xl-ventures-hackathon-1ddi.vercel.app/](https://xl-ventures-hackathon-1ddi.vercel.app/) |
+| 📦 **GitHub Repository** | [https://github.com/Asdortop/XLVentures-Hackathon-](https://github.com/Asdortop/XLVentures-Hackathon-) |
+
+---
+
 ## Screenshots
 
 ### Command Center

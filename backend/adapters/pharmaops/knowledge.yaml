@@ -1,0 +1,17 @@
+playbooks:
+  - id: escalation_protocol
+    title: "Escalation Protocol"
+    keywords: [escalate, regional, manager]
+    excerpt: "When account's prescription volume drops over 50% quarter-on-quarter, escalate to regional manager within 48 hours."
+  - id: competitor_formulary_response
+    title: "Competitor Formulary Response"
+    keywords: [competitor, formulary, deal]
+    excerpt: "When a hospital or clinic signs a competitor formulary deal, initiate a counter-offer review immediately."
+  - id: discount_request_process
+    title: "Discount Request Process"
+    keywords: [discount, price, reduction]
+    excerpt: "When an account requests a discount, review and provide response within 3 days."
+  - id: high_value_account_process
+    title: "High Value Account Process"
+    keywords: [high, value, account]
+    excerpt: "When an account has a high annual value, obtain VP approval before offering any discount."
