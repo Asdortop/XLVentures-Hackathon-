@@ -1,0 +1,60 @@
+actions:
+  - id: file_court_documents
+    intents: [court_filing_deadline]
+    keywords: [filing, deadline, court]
+    action: "File court documents"
+    owner: "Junior Associate"
+    action_type: task
+    priority: critical
+    base_confidence: 0.90
+    estimated_hours: 2
+  - id: schedule_client_meeting
+    intents: [client_unresponsive]
+    keywords: [unresponsive, client, follow-up]
+    action: "Schedule client meeting"
+    owner: "Senior Associate"
+    action_type: meeting
+    priority: high
+    base_confidence: 0.80
+    estimated_hours: 1
+  - id: escalate_to_senior_partner
+    intents: [case_escalation]
+    keywords: [escalation, senior, partner]
+    action: "Escalate case to senior partner"
+    owner: "Senior Partner"
+    action_type: task
+    priority: high
+    base_confidence: 0.85
+    estimated_hours: 2
+  - id: send_billing_statement
+    intents: [billing_dispute]
+    keywords: [billing, dispute, payment]
+    action: "Send billing statement"
+    owner: "Billing Director"
+    action_type: task
+    priority: medium
+    base_confidence: 0.70
+    estimated_hours: 1
+  - id: review_settlement_offer
+    intents: [settlement_offer]
+    keywords: [settlement, offer, review]
+    action: "Review settlement offer"
+    owner: "Lead Attorney"
+    action_type: task
+    priority: critical
+    base_confidence: 0.95
+    estimated_hours: 2
+  - id: flag_for_compliance_review
+    intents: [compliance_review]
+    keywords: [compliance, review, flag]
+    action: "Flag case for compliance review"
+    owner: "Compliance Officer"
+    action_type: task
+    priority: medium
+    base_confidence: 0.75
+    estimated_hours: 1
+fallback:
+  action: "Review case and assign task"
+  owner: "Junior Associate"
+  priority: low
+  base_confidence: 0.50

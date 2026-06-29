@@ -1,0 +1,9 @@
+severity_keywords:
+  critical: [urgent, asap, critical, immediately, by friday, 3rd rejection, third rejection, escalate, losing]
+  high: [frustrated, rejected, unhappy, deadline, disappointed, at risk, falling through]
+  medium: [concern, slow, not progressing, considering, wondering]
+  low: [update, status, checking in, fyi]
+
+deadline_warning_hours: 48
+rejection_count_critical: 3
+placement_risk_threshold: 2

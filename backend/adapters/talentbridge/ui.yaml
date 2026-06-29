@@ -1,0 +1,26 @@
+domain_label: "TalentBridge Staffing"
+entity_label: "Job Requisition"
+interaction_label: "Client Update / Recruiter Note"
+interaction_placeholder: "Paste client feedback, rejection notes, recruiter updates, or escalation signals here..."
+
+demo_interaction:
+  entity_name: "GlobalBank CFO Search"
+  text: "GlobalBank rejected our 3rd candidate for the CFO role. The client said they still don't feel we understand their culture fit requirements. They need someone by Friday. The account director is getting nervous about the relationship."
+
+sample_scenarios:
+  - label: "3rd Rejection"
+    entity_name: "GlobalBank CFO Search"
+    text: "GlobalBank rejected our 3rd candidate for the CFO role. They need someone by Friday. Client is frustrated."
+  - label: "Urgent Role"
+    entity_name: "TechStartup VP Engineering"
+    text: "TechStartup needs a VP Engineering to start Monday. Their current VP resigned suddenly. This is critical — they have a board presentation next week."
+  - label: "Client Escalation"
+    entity_name: "MegaRetail VP Operations"
+    text: "MegaRetail VP of HR called directly complaining about slow progress on VP Operations role. 6 weeks in, still no shortlist. Threatening to move to another agency."
+  - label: "Placement at Risk"
+    entity_name: "FinanceCo CFO Placement"
+    text: "Our top candidate for FinanceCo just received a counter-offer from their current employer. They're reconsidering. The placement is at risk of falling through."
+
+value_metric:
+  label: "Placements Supported"
+  per_approved_nba: 1

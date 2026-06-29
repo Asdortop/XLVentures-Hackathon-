@@ -1,0 +1,21 @@
+playbooks:
+  - id: court_filing_protocol
+    title: "Court Filing Protocol"
+    keywords: [filing, deadline, court]
+    excerpt: "File court documents at least 48 hours before deadline"
+  - id: client_follow_up_protocol
+    title: "Client Follow-up Protocol"
+    keywords: [unresponsive, client, follow-up]
+    excerpt: "Follow up with unresponsive clients after 14 days"
+  - id: billing_dispute_protocol
+    title: "Billing Dispute Protocol"
+    keywords: [billing, dispute, payment]
+    excerpt: "Escalate billing disputes to billing director after 30 days"
+  - id: case_escalation_protocol
+    title: "Case Escalation Protocol"
+    keywords: [escalation, senior, partner]
+    excerpt: "Escalate cases to senior partner after 2 missed internal milestones"
+  - id: settlement_offer_protocol
+    title: "Settlement Offer Protocol"
+    keywords: [settlement, offer, review]
+    excerpt: "Review settlement offers within 24 hours of receipt"

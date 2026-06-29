@@ -1,0 +1,66 @@
+actions:
+  - id: source_premium_candidates
+    intents: [candidate_rejection, urgent_requisition]
+    keywords: [rejected, not suitable, urgent, deadline, asap]
+    action: "Source senior-level candidates from premium talent pool — target 3 profiles within 24 hours"
+    owner: "Senior Recruiter"
+    action_type: sourcing
+    priority: critical
+    base_confidence: 0.90
+    estimated_hours: 4
+
+  - id: schedule_client_call
+    intents: [candidate_rejection, client_escalation, placement_at_risk]
+    keywords: [rejected, frustrated, unhappy, at risk, disappointed]
+    action: "Schedule client alignment call within 4 hours — review requirements and recalibrate expectations"
+    owner: "Account Manager"
+    action_type: meeting
+    priority: critical
+    base_confidence: 0.86
+    estimated_hours: 1
+
+  - id: escalate_to_director
+    intents: [client_escalation, candidate_rejection]
+    keywords: [frustrated, escalate, director, losing confidence, 3rd rejection, third]
+    action: "Escalate to Account Director — prepare client relationship recovery plan"
+    owner: "Account Director"
+    action_type: escalation
+    priority: critical
+    base_confidence: 0.83
+    estimated_hours: 2
+
+  - id: revise_job_brief
+    intents: [candidate_rejection, new_requirement]
+    keywords: [not suitable, no fit, rejected, mismatch, requirements, brief]
+    action: "Revise job brief with client — clarify must-haves vs. nice-to-haves to improve match rate"
+    owner: "Account Manager"
+    action_type: task
+    priority: high
+    base_confidence: 0.78
+    estimated_hours: 2
+
+  - id: activate_backup_pipeline
+    intents: [placement_at_risk, urgent_requisition]
+    keywords: [at risk, withdrew, fell through, counter offer, losing, urgent]
+    action: "Activate backup candidate pipeline — shortlist 2 pre-screened alternatives immediately"
+    owner: "Senior Recruiter"
+    action_type: sourcing
+    priority: high
+    base_confidence: 0.81
+    estimated_hours: 3
+
+  - id: onboard_new_req
+    intents: [new_requirement]
+    keywords: [new role, new position, new req, headcount, looking for]
+    action: "Onboard new requirement — complete intake form, align on timeline, begin sourcing within 48 hours"
+    owner: "Recruiter"
+    action_type: task
+    priority: medium
+    base_confidence: 0.74
+    estimated_hours: 2
+
+fallback:
+  action: "Review requisition status and schedule update call with client within 48 hours"
+  owner: "Account Manager"
+  priority: medium
+  base_confidence: 0.62

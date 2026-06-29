@@ -1,0 +1,66 @@
+actions:
+  - id: schedule_qbr
+    intents: [churn_risk, health_decline, renewal_opportunity]
+    keywords: [usage, drop, health, score, churn, leaving]
+    action: "Schedule Executive Business Review (QBR) within 5 business days"
+    owner: "Senior CSM"
+    action_type: meeting
+    priority: critical
+    base_confidence: 0.88
+    estimated_hours: 2
+
+  - id: send_renewal_proposal
+    intents: [renewal_opportunity, expansion_signal]
+    keywords: [renewal, expire, contract, annual]
+    action: "Send renewal proposal with updated pricing and expansion options"
+    owner: "Account Executive"
+    action_type: proposal
+    priority: high
+    base_confidence: 0.82
+    estimated_hours: 4
+
+  - id: escalate_to_director
+    intents: [churn_risk, support_escalation]
+    keywords: [cancel, leaving, competitor, frustrated, escalate]
+    action: "Escalate account to CSM Director — prepare competitive battle card"
+    owner: "CSM Director"
+    action_type: escalation
+    priority: critical
+    base_confidence: 0.85
+    estimated_hours: 1
+
+  - id: health_intervention
+    intents: [health_decline]
+    keywords: [usage, drop, inactive, not using, declined]
+    action: "Flag account for health intervention — schedule adoption workshop"
+    owner: "Customer Success Engineer"
+    action_type: task
+    priority: high
+    base_confidence: 0.79
+    estimated_hours: 3
+
+  - id: expansion_pitch
+    intents: [expansion_signal]
+    keywords: [expand, new team, additional, more users, upgrade]
+    action: "Prepare expansion pitch — identify upsell opportunity and schedule commercial call"
+    owner: "Account Executive"
+    action_type: proposal
+    priority: medium
+    base_confidence: 0.75
+    estimated_hours: 2
+
+  - id: support_bridge
+    intents: [support_escalation]
+    keywords: [support, ticket, issue, broken, not working]
+    action: "Bridge customer with engineering lead — set 24-hour resolution SLA"
+    owner: "Technical Support Lead"
+    action_type: task
+    priority: high
+    base_confidence: 0.80
+    estimated_hours: 1
+
+fallback:
+  action: "Review account health and schedule check-in call within 48 hours"
+  owner: "CSM"
+  priority: medium
+  base_confidence: 0.62

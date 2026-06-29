@@ -1,0 +1,16 @@
+domain_label: "LexOps Legal"
+entity_label: "Case"
+interaction_placeholder: "Paste case updates or notes here..."
+demo_interaction:
+  entity_name: "Sample Case"
+  text: "Sample Case has an upcoming court filing deadline in 3 days."
+sample_scenarios:
+  - label: "Court Filing Deadline"
+    entity_name: "Demo Case"
+    text: "Demo Case has a court filing deadline in 2 days."
+  - label: "Client Unresponsive"
+    entity_name: "Test Case"
+    text: "Test Case client has not responded in 10 days."
+value_metric:
+  label: "Cases Resolved"
+  per_approved_nba: 1000

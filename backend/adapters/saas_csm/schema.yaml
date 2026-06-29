@@ -1,0 +1,44 @@
+domain_name: "SaaS Customer Success"
+primary_entity: "Account"
+entities:
+  - id: account
+    label: Account
+    primary: true
+  - id: contact
+    label: Contact
+  - id: product
+    label: Product
+  - id: renewal
+    label: Renewal
+relationships:
+  - from: account
+    to: contact
+    type: has_contact
+  - from: account
+    to: product
+    type: uses_product
+  - from: account
+    to: renewal
+    type: has_renewal
+seed_data:
+  - name: "Acme Corp"
+    arr: 480000
+    health_score: 52
+    renewal_days: 28
+    seats: 850
+    industry: "Financial Services"
+    csm: "Sarah Mitchell"
+  - name: "TechCorp Inc"
+    arr: 240000
+    health_score: 71
+    renewal_days: 45
+    seats: 320
+    industry: "Technology"
+    csm: "James Lee"
+  - name: "GlobalBank"
+    arr: 1200000
+    health_score: 88
+    renewal_days: 90
+    seats: 2200
+    industry: "Banking"
+    csm: "Priya Sharma"

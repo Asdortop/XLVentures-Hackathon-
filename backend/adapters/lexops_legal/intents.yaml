@@ -1,0 +1,25 @@
+intents:
+  - id: court_filing_deadline
+    label: Court Filing Deadline
+    keywords: [filing, deadline, court]
+    description: Upcoming court filing deadline
+  - id: client_unresponsive
+    label: Client Unresponsive
+    keywords: [unresponsive, client, follow-up]
+    description: Client has not responded in a while
+  - id: billing_dispute
+    label: Billing Dispute
+    keywords: [billing, dispute, payment]
+    description: Billing dispute with a client
+  - id: case_escalation
+    label: Case Escalation
+    keywords: [escalation, senior, partner]
+    description: Case needs to be escalated to a senior partner
+  - id: settlement_offer
+    label: Settlement Offer
+    keywords: [settlement, offer, review]
+    description: Settlement offer received
+  - id: compliance_review
+    label: Compliance Review
+    keywords: [compliance, review, flag]
+    description: Case needs to be flagged for compliance review

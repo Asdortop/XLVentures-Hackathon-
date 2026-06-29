@@ -1,0 +1,40 @@
+domain_name: "TalentBridge Staffing"
+primary_entity: "Job Requisition"
+entities:
+  - id: job_requisition
+    label: Job Requisition
+    primary: true
+  - id: candidate
+    label: Candidate
+  - id: client
+    label: Client
+  - id: placement
+    label: Placement
+relationships:
+  - from: job_requisition
+    to: candidate
+    type: has_candidate
+  - from: job_requisition
+    to: client
+    type: belongs_to_client
+  - from: candidate
+    to: placement
+    type: results_in_placement
+seed_data:
+  - client: "GlobalBank"
+    role: "CFO"
+    open_reqs: 1
+    renewal_days: 30
+    rejection_count: 3
+    deadline: "Friday"
+    tier: "enterprise"
+  - client: "TechStartup Co"
+    role: "Senior Engineer"
+    open_reqs: 5
+    rejection_count: 0
+    tier: "growth"
+  - client: "MegaRetail"
+    role: "VP Operations"
+    open_reqs: 2
+    rejection_count: 1
+    tier: "enterprise"

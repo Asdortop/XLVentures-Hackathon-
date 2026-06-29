@@ -1,0 +1,25 @@
+intents:
+  - id: churn_risk
+    label: Churn Risk
+    keywords: [churn, cancel, leaving, competitor, switching, downgrade, churning, exit, terminate]
+    description: Customer showing signs of leaving or disengaging
+
+  - id: renewal_opportunity
+    label: Renewal Opportunity
+    keywords: [renewal, renew, expire, expiry, contract, annual, subscription, end date]
+    description: Upcoming contract renewal requiring attention
+
+  - id: health_decline
+    label: Health Decline
+    keywords: [usage, drop, decline, health, score, low, decreased, inactive, not using]
+    description: Customer health metrics dropping significantly
+
+  - id: expansion_signal
+    label: Expansion Signal
+    keywords: [expand, growth, new team, new department, additional, more users, upgrade, scale]
+    description: Customer showing signs of wanting to expand
+
+  - id: support_escalation
+    label: Support Escalation
+    keywords: [support, ticket, issue, bug, problem, broken, not working, escalate, frustrated]
+    description: Customer experiencing unresolved support issues

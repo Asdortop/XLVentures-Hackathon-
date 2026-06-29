@@ -1,0 +1,9 @@
+severity_keywords:
+  critical: [urgent, deadline, court]
+  high: [unresponsive, escalation, senior]
+  medium: [billing, dispute, payment]
+  low: [update, fyi]
+deadline_warning_hours: 48
+rejection_count_critical: 2
+unresponsive_days: 14
+billing_dispute_days: 30

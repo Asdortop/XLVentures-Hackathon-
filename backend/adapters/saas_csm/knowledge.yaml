@@ -1,0 +1,25 @@
+playbooks:
+  - id: qbr_protocol
+    title: "QBR Escalation Protocol"
+    keywords: [health, score, usage, drop, decline, executive, quarterly]
+    excerpt: "When customer health score drops below 60% or usage declines >30% MoM, initiate Executive Business Review within 5 business days. Involve executive sponsor. Prepare: usage analysis, ROI summary, competitive positioning, and renewal proposal. Success rate: 78% retention."
+
+  - id: churn_prevention
+    title: "Churn Prevention Playbook"
+    keywords: [churn, cancel, leaving, competitor, switching, terminate]
+    excerpt: "First response within 2 hours of churn signal. Engage CSM Director immediately. Identify root cause: price, product gap, support failure, or competitive offer. Prepare counteroffer within 24 hours. Escalate to executive sponsor if ARR > $100K. Document all interactions in CRM."
+
+  - id: renewal_playbook
+    title: "Renewal Management Process"
+    keywords: [renewal, renew, expire, contract, subscription, annual]
+    excerpt: "Begin renewal conversations 90 days before contract end. Send renewal proposal at 60 days. Schedule executive alignment at 45 days. Final follow-up at 30 days. If no response by 30 days, escalate to account director. Always include expansion options in renewal proposal."
+
+  - id: health_intervention
+    title: "Account Health Intervention Guide"
+    keywords: [health, usage, inactive, adoption, onboarding, training]
+    excerpt: "For accounts with health score 60-75: schedule adoption workshop, assign dedicated CSE for 30 days. For score below 60: immediate QBR, executive escalation, and custom success plan. Track engagement metrics weekly. Set 30-day improvement milestone."
+
+  - id: expansion_guide
+    title: "Expansion Revenue Playbook"
+    keywords: [expand, growth, upsell, cross-sell, new team, additional users]
+    excerpt: "Expansion signals: new departments onboarded, high NPS (>8), usage >90%, positive sentiment in QBR. Approach: present ROI data, offer pilot for new team, propose multi-year deal. Expected conversion rate: 35%. Timing: best at renewal or 6-month mark."

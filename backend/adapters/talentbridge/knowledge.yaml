@@ -1,0 +1,20 @@
+playbooks:
+  - id: rejection_protocol
+    title: "Candidate Rejection Recovery Protocol"
+    keywords: [rejected, not suitable, rejection, no fit, declined]
+    excerpt: "When a client rejects a candidate: within 1 hour, account manager calls client to understand specific objection. If 2+ rejections, schedule requirements recalibration meeting. If 3+ rejections, escalate to Account Director and source exclusively from premium partner network. Success rate with premium sourcing: 84%."
+
+  - id: urgent_placement
+    title: "Urgent Placement Playbook"
+    keywords: [urgent, asap, deadline, critical hire, immediately, friday]
+    excerpt: "For urgent roles (deadline <72 hours): activate emergency sourcing protocol. Senior recruiter dedicates 100% of time. Tap into pre-screened talent pool first. Contact 10+ candidates within 4 hours. Keep client updated every 2 hours. Prioritize candidates who have been pre-interviewed within last 30 days."
+
+  - id: client_recovery
+    title: "Client Relationship Recovery"
+    keywords: [frustrated, unhappy, escalate, disappointed, losing confidence, complaint]
+    excerpt: "Client satisfaction recovery: Account Director call within 2 hours of escalation signal. Acknowledge failure without excuses. Present concrete 48-hour action plan. Offer dedicated senior recruiter for remainder of search. Follow up daily until placement is made. If client is enterprise tier, waive fees on next placement."
+
+  - id: placement_risk
+    title: "At-Risk Placement Response"
+    keywords: [at risk, withdrew, counter offer, falling through, candidate withdrew]
+    excerpt: "When a placement is at risk: immediately activate backup pipeline (min 2 alternatives). Notify client within 30 minutes with recovery timeline. Have Account Manager call candidate to understand concerns — 60% of at-risk placements are saved with direct intervention. Document root cause for future prevention."

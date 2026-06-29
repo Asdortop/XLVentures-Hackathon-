@@ -1,0 +1,16 @@
+severity_keywords:
+  critical: [urgent, critical, cancel, churn, churning, terminate, leaving immediately, competitor offer]
+  high: [concern, dropping, declining, health score, issue, problem, worried, frustrated]
+  medium: [question, wondering, thinking, considering, slow]
+  low: [update, fyi, info, status, checking in]
+
+deadline_warning_hours: 48
+renewal_warning_days: 30
+health_score_critical: 60
+health_score_warning: 75
+rejection_count_critical: 3
+
+risk_entities:
+  account:
+    high_value_threshold: 100000
+    monitored_fields: [health_score, renewal_date, usage_percent]

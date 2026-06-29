@@ -1,0 +1,26 @@
+domain_label: "SaaS Customer Success"
+entity_label: "Account"
+interaction_label: "CRM Update / Meeting Note"
+interaction_placeholder: "Paste meeting notes, CRM alerts, usage reports, or customer emails here..."
+
+demo_interaction:
+  entity_name: "Acme Corp"
+  text: "Acme Corp usage dropped 40% last month. Health score is at 52. Renewal is in 28 days and the CSM hasn't been able to reach the primary contact for the last 2 weeks. They also mentioned evaluating a competitor in our last call."
+
+sample_scenarios:
+  - label: "Churn Risk"
+    entity_name: "TechCorp Inc"
+    text: "TechCorp mentioned they're actively evaluating a competitor. Usage is down 35% over 3 months. Renewal in 45 days. No executive sponsor contact in 60 days."
+  - label: "Renewal Opportunity"
+    entity_name: "GlobalBank"
+    text: "GlobalBank's contract expires in 30 days. They've been expanding usage — 3 new departments onboarded last month. NPS score is 9. Good time to propose expansion."
+  - label: "Health Decline"
+    entity_name: "Midwest Manufacturing"
+    text: "Midwest Manufacturing health score dropped from 78 to 51 this quarter. Only 2 of 8 purchased modules are being used. Last login 3 weeks ago. Training needed."
+  - label: "Support Escalation"
+    entity_name: "RetailPlus"
+    text: "RetailPlus has had 4 critical support tickets this month, all unresolved beyond SLA. Their VP of Operations sent a strongly worded email. At risk of churn."
+
+value_metric:
+  label: "ARR Protected"
+  per_approved_nba: 48000

@@ -1,0 +1,17 @@
+domain_name: "LexOps Legal"
+primary_entity: "Case"
+entities:
+  - id: case
+    label: Case
+    primary: true
+  - id: client
+    label: Client
+  - id: court
+    label: Court
+relationships:
+  - from: case
+    to: client
+    type: has_client
+  - from: case
+    to: court
+    type: has_court

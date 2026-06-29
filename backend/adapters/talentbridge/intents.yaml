@@ -1,0 +1,25 @@
+intents:
+  - id: candidate_rejection
+    label: Candidate Rejection
+    keywords: [rejected, not suitable, no fit, declined, didn't pass, unsuccessful, rejected candidate, not a match]
+    description: Client rejected one or more submitted candidates
+
+  - id: urgent_requisition
+    label: Urgent Placement
+    keywords: [urgent, asap, critical hire, immediately, deadline, by friday, by monday, rush, priority]
+    description: Time-sensitive role requiring immediate action
+
+  - id: client_escalation
+    label: Client Escalation
+    keywords: [unhappy, frustrated, disappointed, complaint, escalate, director, senior, dissatisfied, losing confidence]
+    description: Client expressing dissatisfaction or requesting escalation
+
+  - id: placement_at_risk
+    label: Placement at Risk
+    keywords: [at risk, might fall through, candidate withdrew, offer rejected, counter offer, losing candidate]
+    description: An in-progress placement is at risk of falling through
+
+  - id: new_requirement
+    label: New Requirement
+    keywords: [new role, new req, new position, new opening, headcount, hiring for, need someone, looking for]
+    description: Client has a new hiring requirement
