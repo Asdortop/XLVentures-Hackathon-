@@ -1,6 +1,6 @@
 'use client'
 import { useState, useEffect, useRef } from 'react'
-import { useApp } from '../layout'
+import { useApp } from '../context'
 
 interface GraphNode {
   id: string

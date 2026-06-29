@@ -1,6 +1,6 @@
 'use client'
 import { useEffect, useState } from 'react'
-import { useApp } from '../layout'
+import { useApp } from '../context'
 
 export default function OutcomesPage() {
   const { domain } = useApp()

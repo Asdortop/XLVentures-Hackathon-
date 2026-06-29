@@ -1,7 +1,7 @@
 'use client'
 import { useState, useEffect, useRef } from 'react'
 import { useRouter } from 'next/navigation'
-import { useApp } from '../layout'
+import { useApp } from '../context'
 
 const AGENT_META: Record<string, { icon: string; label: string; color: string; desc: string }> = {
   planner:     { icon: '✦', label: 'Planner',     color: '#818cf8', desc: 'Classifying intent & context' },

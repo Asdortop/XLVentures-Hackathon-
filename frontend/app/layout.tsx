@@ -1,14 +1,9 @@
 'use client'
-import { useState, useEffect, createContext, useContext } from 'react'
+import { useState, useEffect } from 'react'
 import { useRouter, usePathname } from 'next/navigation'
 import Link from 'next/link'
 import './globals.css'
-
-interface Domain { id: number; slug: string; name: string; label: string; entity_label: string }
-interface AppCtx { domain: Domain | null; domains: Domain[]; setDomain: (d: Domain) => void }
-
-export const AppContext = createContext<AppCtx>({ domain: null, domains: [], setDomain: () => {} })
-export const useApp = () => useContext(AppContext)
+import { AppContext, Domain } from './context'
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const [domains, setDomains] = useState<Domain[]>([])

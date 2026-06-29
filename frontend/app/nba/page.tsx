@@ -1,7 +1,7 @@
 'use client'
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { useApp } from '../layout'
+import { useApp } from '../context'
 
 export default function NBAInbox() {
   const { domain } = useApp()
