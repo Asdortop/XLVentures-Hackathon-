@@ -1,0 +1,16 @@
+domain_label: "Meridian SaaS"
+entity_label: "Account"
+interaction_placeholder: "Paste meeting notes or CRM updates here..."
+demo_interaction:
+  entity_name: "Sample Corp"
+  text: "Sample Corp usage dropped 40% last month. Renewal in 28 days."
+sample_scenarios:
+  - label: "Risk Signal"
+    entity_name: "Demo Corp"
+    text: "Demo Corp is evaluating competitors."
+  - label: "Renewal Opportunity"
+    entity_name: "Test Corp"
+    text: "Test Corp renewal is in 20 days."
+value_metric:
+  label: "ARR Protected"
+  per_approved_nba: 50000

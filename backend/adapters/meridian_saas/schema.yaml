@@ -1,0 +1,12 @@
+domain_name: "Meridian SaaS"
+primary_entity: "Account"
+entities:
+  - id: account
+    label: Account
+    primary: true
+  - id: contact
+    label: Contact
+relationships:
+  - from: account
+    to: contact
+    type: has_contact

@@ -21,6 +21,8 @@ from routes.interactions import router as interactions_router
 from routes.nba import router as nba_router
 from routes.onboarding import router as onboarding_router
 from routes.outcomes import router as outcomes_router
+from routes.ingest import router as ingest_router
+from routes.memory import router as memory_router
 
 app = FastAPI(title="Praxis AI", version="1.0.0", description="Agentic Decision Intelligence Platform")
 
@@ -37,6 +39,8 @@ app.include_router(interactions_router)
 app.include_router(nba_router)
 app.include_router(onboarding_router)
 app.include_router(outcomes_router)
+app.include_router(ingest_router)
+app.include_router(memory_router)
 
 
 @app.on_event("startup")

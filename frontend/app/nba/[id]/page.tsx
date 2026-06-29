@@ -3,14 +3,15 @@ import { useState, useEffect } from 'react'
 import { useParams, useRouter } from 'next/navigation'
 import Link from 'next/link'
 
-const AGENTS = ['Planner', 'Context', 'Dependency', 'Risk', 'Recommender']
-const AGENT_ICONS = { Planner: '✦', Context: '◈', Dependency: '⬡', Risk: '◎', Recommender: '★' }
+const AGENTS = ['Planner', 'Context', 'Dependency', 'Risk', 'Recommender', 'Critic']
+const AGENT_ICONS: Record<string, string> = { Planner: '✦', Context: '◈', Dependency: '⬡', Risk: '◎', Recommender: '★', Critic: '⚑' }
 
 const EVIDENCE_LABELS: Record<string, string> = {
   playbook: '📘 Playbook',
   similar_case: '✓ Past Case',
+  semantic_memory: '🧠 Semantic Memory',
   crm: '◈ CRM Record',
-  graph_path: '⬡ Dependency',
+  graph_path: '⬡ Entity Graph',
   risk_signal: '◎ Risk Signal',
   interaction: '✦ Interaction',
 }
@@ -99,6 +100,21 @@ export default function NBADetail() {
           )}
         </div>
 
+        {/* Critique flag banner */}
+        {nba.agent_log?.find((l: any) => l.agent === 'Critic') && (() => {
+          const criticLog = nba.agent_log.find((l: any) => l.agent === 'Critic')
+          const steps = criticLog?.steps || []
+          const flagStep = steps.find((s: string) => s.includes('LOW_CONFIDENCE') || s.includes('ESCALATE') || s.includes('OK'))
+          const isOk = !flagStep || flagStep.includes('OK')
+          const isEscalate = flagStep?.includes('ESCALATE')
+          if (isOk) return null
+          return (
+            <div style={{ marginTop: 10, padding: '10px 14px', background: isEscalate ? 'rgba(239,68,68,0.1)' : 'rgba(245,158,11,0.1)', border: `1px solid ${isEscalate ? 'rgba(239,68,68,0.3)' : 'rgba(245,158,11,0.3)'}`, borderRadius: 'var(--radius-md)', fontSize: 13 }}>
+              <strong>{isEscalate ? '🔴 Escalation Recommended' : '⚠️ Low Confidence'}</strong> — Critic agent flagged this recommendation for review
+            </div>
+          )
+        })()}
+
         {rejecting && (
           <div className="card-sm" style={{ marginTop: 12, border: '1px solid rgba(239,68,68,0.3)' }}>
             <input className="form-input" placeholder="Reason for rejection (optional)" value={rejectReason} onChange={e => setRejectReason(e.target.value)} style={{ marginBottom: 10 }} />
@@ -152,6 +168,13 @@ export default function NBADetail() {
                     <span className={`badge badge-${action.priority}`}>{action.priority}</span>
                     <span style={{ fontSize: 12, color: 'var(--text-secondary)' }}>~{action.estimated_hours}h</span>
                   </div>
+
+                  {/* LLM Reasoning Summary — top action only */}
+                  {action.rank === 1 && action.reasoning_summary && (
+                    <div style={{ marginTop: 12, padding: '10px 14px', background: 'linear-gradient(135deg,rgba(99,102,241,0.08),rgba(168,85,247,0.05))', border: '1px solid rgba(99,102,241,0.2)', borderRadius: 'var(--radius-md)', fontSize: 13, color: 'var(--text-secondary)', lineHeight: 1.6, fontStyle: 'italic' }}>
+                      🤖 {action.reasoning_summary}
+                    </div>
+                  )}
                 </div>
               </div>
 

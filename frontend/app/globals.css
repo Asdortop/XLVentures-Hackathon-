@@ -932,3 +932,84 @@ button { cursor: pointer; font-family: inherit; }
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
 }
+
+/* ── Interact page animations ──────────────────────────────── */
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes cardSlideUp {
+  from { opacity: 0; transform: translateY(36px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0)   scale(1); }
+}
+
+@keyframes confBarFill {
+  from { width: 0%; }
+}
+
+@keyframes agentPulse {
+  0%,100% { box-shadow: 0 0 0 0 rgba(99,102,241,0); }
+  50%      { box-shadow: 0 0 0 8px rgba(99,102,241,0.25); }
+}
+
+@keyframes agentGlow {
+  0%,100% { opacity: 0.5; transform: scale(1); }
+  50%      { opacity: 1;   transform: scale(1.08); }
+}
+
+@keyframes shimmerSweep {
+  0%   { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
+}
+
+@keyframes dataFlow {
+  0%   { stroke-dashoffset: 100; opacity: 0.2; }
+  50%  { opacity: 1; }
+  100% { stroke-dashoffset: 0; opacity: 0.2; }
+}
+
+@keyframes completePop {
+  0%   { opacity: 0; transform: scale(0.7); }
+  60%  { transform: scale(1.1); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes particleFloat {
+  0%   { transform: translateY(0px) translateX(0px); opacity: 0.8; }
+  50%  { transform: translateY(-8px) translateX(4px); opacity: 0.4; }
+  100% { transform: translateY(0px) translateX(0px); opacity: 0.8; }
+}
+
+.agent-node-active {
+  animation: agentPulse 1.4s ease-in-out infinite;
+}
+
+.agent-icon-active {
+  animation: agentGlow 1.2s ease-in-out infinite;
+}
+
+.rec-card-enter {
+  animation: cardSlideUp 0.45s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  opacity: 0;
+}
+
+.conf-bar-fill {
+  animation: confBarFill 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.shimmer-top {
+  background: linear-gradient(90deg,
+    transparent 0%, rgba(99,102,241,0.3) 50%, transparent 100%);
+  background-size: 400px 100%;
+  animation: shimmerSweep 2s ease-in-out infinite;
+}
+
+.complete-pop {
+  animation: completePop 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.fade-in {
+  animation: fadeIn 0.4s ease forwards;
+}

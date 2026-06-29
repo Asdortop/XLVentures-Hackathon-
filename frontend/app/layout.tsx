@@ -44,6 +44,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     { href: '/', icon: '⬡', label: 'Command Center' },
     { href: '/interact', icon: '✦', label: 'Submit Interaction' },
     { href: '/nba', icon: '◈', label: 'NBA Inbox', badge: pendingCount },
+    { href: '/memory', icon: '🧠', label: 'Memory Explorer' },
     { href: '/outcomes', icon: '◎', label: 'Outcomes' },
     { href: '/onboarding', icon: '⊕', label: 'Add Domain' },
   ]
@@ -116,7 +117,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               {/* Pipeline indicator */}
               <div style={{ marginTop: 'auto', padding: '16px 12px', borderTop: '1px solid var(--border)' }}>
                 <div style={{ fontSize: 10, color: 'var(--text-muted)', marginBottom: 8, textTransform: 'uppercase', letterSpacing: '0.08em' }}>Agent Pipeline</div>
-                {['Planner', 'Context', 'Dependency', 'Risk', 'Recommender'].map((a, i) => (
+                {['Planner', 'Context', 'Dependency', 'Risk', 'Recommender', 'Critic'].map((a) => (
                   <div key={a} style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 4 }}>
                     <div style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--indigo)', opacity: 0.7 }} />
                     <span style={{ fontSize: 11, color: 'var(--text-secondary)' }}>{a}</span>

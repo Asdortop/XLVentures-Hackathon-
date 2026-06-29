@@ -7,3 +7,8 @@ pyyaml==6.0.1
 requests==2.32.3
 langgraph==0.1.5
 langchain-core==0.2.5
+sentence-transformers>=3.0.0
+networkx>=3.3
+numpy
+pdfplumber>=0.10.0
+python-multipart>=0.0.9

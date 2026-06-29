@@ -62,9 +62,9 @@ export default function CommandCenter() {
         </div>
         <div className="stat-card">
           <div className="stat-value" style={{ background: 'linear-gradient(135deg, var(--purple), var(--indigo-light))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
-            {loading ? '—' : outcomes?.pattern_count ?? 0}
+            {loading ? '—' : (outcomes?.semantic_memory_count ?? 0) + (outcomes?.pattern_count ?? 0)}
           </div>
-          <div className="stat-label">Memory Patterns</div>
+          <div className="stat-label">Memory Items</div>
         </div>
         <div className="stat-card">
           <div className="stat-value" style={{ background: 'linear-gradient(135deg, var(--amber), var(--red))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
@@ -78,7 +78,7 @@ export default function CommandCenter() {
       <div className="card" style={{ marginBottom: 28, background: 'linear-gradient(135deg, rgba(99,102,241,0.08), rgba(168,85,247,0.08))', borderColor: 'rgba(99,102,241,0.25)' }}>
         <div style={{ fontSize: 11, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: 12 }}>Active Agent Pipeline</div>
         <div className="pipeline-flow">
-          {['✦ Planner', '◈ Context', '⬡ Dependency', '◎ Risk', '★ Recommender'].map((step, i, arr) => (
+          {['✦ Planner', '◈ Context', '⬡ Dependency', '◎ Risk', '★ Recommender', '⚑ Critic'].map((step, i, arr) => (
             <div key={step} style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
               <div className="flow-node">{step}</div>
               {i < arr.length - 1 && <span className="flow-arrow">→</span>}
@@ -86,7 +86,7 @@ export default function CommandCenter() {
           ))}
         </div>
         <div style={{ fontSize: 12, color: 'var(--text-secondary)', marginTop: 8 }}>
-          Every interaction flows through all 5 agents · Evidence-backed recommendations · HITL before any action
+          Every interaction flows through all 6 agents · Evidence-backed recommendations · HITL before any action
         </div>
       </div>
 

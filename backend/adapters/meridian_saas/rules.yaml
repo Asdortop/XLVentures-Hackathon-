@@ -1,0 +1,11 @@
+severity_keywords:
+  critical: [urgent, cancel, rejected]
+  high: [concern, dropping, declining]
+  medium: [question, wondering]
+  low: [update, fyi]
+deadline_warning_hours: 48
+rejection_count_critical: 3
+health_score_critical: 60
+renewal_warning_days: 30
+nps_threshold: 6
+missed_check_ins_threshold: 3

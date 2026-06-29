@@ -7,6 +7,63 @@ from core.adapter import get_adapter
 router = APIRouter(prefix="/api/outcomes", tags=["outcomes"])
 
 
+def _avg_time_to_decision_minutes(db: Session, domain_id: int) -> float:
+    """Compute avg minutes between NBA creation and first approve/reject event."""
+    try:
+        events = (
+            db.query(Event)
+            .filter(
+                Event.domain_id == domain_id,
+                Event.event_type.in_(["nba_approved", "nba_rejected"]),
+            )
+            .all()
+        )
+        if not events:
+            return 0.0
+        deltas = []
+        for ev in events:
+            nba = db.query(NBA).filter(NBA.id == ev.nba_id).first()
+            if nba:
+                delta = (ev.created_at - nba.created_at).total_seconds() / 60
+                if delta >= 0:
+                    deltas.append(delta)
+        return round(sum(deltas) / len(deltas), 1) if deltas else 0.0
+    except Exception:
+        return 0.0
+
+
+def _confidence_trend(db: Session, domain_id: int) -> dict:
+    """Compare avg confidence of first 5 vs last 5 approved NBAs."""
+    try:
+        approved_nbas = (
+            db.query(NBA)
+            .filter(NBA.domain_id == domain_id, NBA.hitl_status == "approved")
+            .order_by(NBA.created_at.asc())
+            .all()
+        )
+        if len(approved_nbas) < 2:
+            return {"first_avg": 0, "last_avg": 0, "delta": 0, "improving": False}
+
+        def avg_conf(nbas):
+            confs = []
+            for n in nbas:
+                for a in n.actions:
+                    confs.append(a.confidence)
+            return round(sum(confs) / len(confs), 3) if confs else 0
+
+        first_avg = avg_conf(approved_nbas[:5])
+        last_avg = avg_conf(approved_nbas[-5:])
+        delta = round(last_avg - first_avg, 3)
+        return {
+            "first_avg": round(first_avg * 100, 1),
+            "last_avg": round(last_avg * 100, 1),
+            "delta": round(delta * 100, 1),
+            "improving": delta > 0,
+        }
+    except Exception:
+        return {"first_avg": 0, "last_avg": 0, "delta": 0, "improving": False}
+
+
 @router.get("/{domain_id}")
 def get_outcomes(domain_id: int, db: Session = Depends(get_db)):
     domain = db.query(Domain).filter(Domain.id == domain_id).first()
@@ -91,6 +148,19 @@ def get_outcomes(domain_id: int, db: Session = Depends(get_db)):
 
     estimated_value = approved * per_nba_value
 
+    # ── New business metrics ──────────────────────────────────────────────
+    avg_ttd = _avg_time_to_decision_minutes(db, domain_id)
+    value_awaiting = pending * per_nba_value
+    conf_trend = _confidence_trend(db, domain_id)
+
+    # Semantic memory count
+    semantic_count = 0
+    try:
+        from memory.vector_store import collection_count
+        semantic_count = collection_count(domain.slug)
+    except Exception:
+        pass
+
     return {
         "domain_id": domain_id,
         "total_nbas": total_nbas,
@@ -99,6 +169,10 @@ def get_outcomes(domain_id: int, db: Session = Depends(get_db)):
         "pending": pending,
         "approval_rate": approval_rate,
         "pattern_count": pattern_count,
+        "semantic_memory_count": semantic_count,
+        "avg_time_to_decision_minutes": avg_ttd,
+        "value_awaiting": value_awaiting,
+        "confidence_trend": conf_trend,
         "top_patterns": [
             {
                 "issue_type": p.issue_type,

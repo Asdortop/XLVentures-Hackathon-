@@ -1,0 +1,13 @@
+playbooks:
+  - id: protocol_1
+    title: "Escalation Protocol"
+    keywords: [health, drop, executive]
+    excerpt: "When health score drops below 60%, initiate review within 5 business days."
+  - id: protocol_2
+    title: "Renewal Protocol"
+    keywords: [renewal, proposal, contract]
+    excerpt: "When renewal is within 30 days, send proposal."
+  - id: protocol_3
+    title: "NPS Protocol"
+    keywords: [nps, satisfaction, unhappy]
+    excerpt: "When NPS is below 6, escalate to director."

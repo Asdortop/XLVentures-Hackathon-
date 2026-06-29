@@ -65,6 +65,7 @@ class NBAAction(Base):
     confidence = Column(Float, default=0.5)
     estimated_hours = Column(Float, default=1.0)
     evidence = Column(JSON, default=list)
+    reasoning_summary = Column(Text, default="")  # LLM-generated 2-sentence rationale
 
     nba = relationship("NBA", back_populates="actions")
 

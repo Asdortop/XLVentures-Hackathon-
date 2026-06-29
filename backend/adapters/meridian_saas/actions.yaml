@@ -1,0 +1,60 @@
+actions:
+  - id: schedule_qbr
+    intents: [health_concern, churn_risk]
+    keywords: [qbr, review, meeting]
+    action: "Schedule QBR within 5 days"
+    owner: "CSM"
+    action_type: meeting
+    priority: high
+    base_confidence: 0.80
+    estimated_hours: 2
+  - id: send_renewal_proposal
+    intents: [renewal_opportunity]
+    keywords: [renewal, proposal, contract]
+    action: "Send renewal proposal"
+    owner: "CSM"
+    action_type: email
+    priority: medium
+    base_confidence: 0.70
+    estimated_hours: 1
+  - id: escalate_to_director
+    intents: [nps_concern, churn_risk]
+    keywords: [escalate, director, review]
+    action: "Escalate to CSM director"
+    owner: "CSM"
+    action_type: escalation
+    priority: critical
+    base_confidence: 0.90
+    estimated_hours: 1
+  - id: flag_for_health_intervention
+    intents: [health_concern]
+    keywords: [health, intervention, review]
+    action: "Flag for health intervention"
+    owner: "CSM"
+    action_type: task
+    priority: high
+    base_confidence: 0.80
+    estimated_hours: 1
+  - id: prepare_expansion_pitch
+    intents: [expansion_opportunity]
+    keywords: [expansion, pitch, growth]
+    action: "Prepare expansion pitch"
+    owner: "CSM"
+    action_type: task
+    priority: medium
+    base_confidence: 0.70
+    estimated_hours: 2
+  - id: schedule_check_in
+    intents: [check_in_required]
+    keywords: [check-in, meeting, review]
+    action: "Schedule check-in"
+    owner: "CSM"
+    action_type: meeting
+    priority: low
+    base_confidence: 0.60
+    estimated_hours: 1
+fallback:
+  action: "Review account and schedule check-in"
+  owner: "CSM"
+  priority: medium
+  base_confidence: 0.60

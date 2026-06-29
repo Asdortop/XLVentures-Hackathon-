@@ -1,0 +1,25 @@
+intents:
+  - id: churn_risk
+    label: Churn Risk
+    keywords: [churn, cancel, leaving, competitor]
+    description: Customer showing signs of leaving
+  - id: renewal_opportunity
+    label: Renewal Opportunity
+    keywords: [renewal, contract, expiration]
+    description: Customer is approaching renewal
+  - id: health_concern
+    label: Health Concern
+    keywords: [health, score, drop]
+    description: Customer health score is dropping
+  - id: expansion_opportunity
+    label: Expansion Opportunity
+    keywords: [growth, upsell, cross-sell]
+    description: Customer is showing signs of growth
+  - id: nps_concern
+    label: NPS Concern
+    keywords: [nps, satisfaction, unhappy]
+    description: Customer is showing low satisfaction
+  - id: check_in_required
+    label: Check-in Required
+    keywords: [check-in, meeting, review]
+    description: Customer requires a check-in
