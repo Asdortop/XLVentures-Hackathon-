@@ -6,11 +6,11 @@
 
 ## 👥 Team
 
-| Name | Role |
-|---|---|
-| **Tejas G** | Full-Stack & AI Systems |
-| **Pranav Talupula** | Backend & Agent Pipeline |
-| **Rushindra M** | Frontend & UX |
+| Name | 
+|---|
+| **Tejas G** | 
+| **Pranav Talupula** | 
+| **Rushindra M** | 
 
 ---
 
