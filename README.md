@@ -52,103 +52,67 @@ A human reviews and approves/rejects each recommendation. That decision gets wri
 
 ## Architecture
 
-```
-┌─────────────────────────────────────────────────────────────────────────────┐
-│                            PRAXIS AI PLATFORM                               │
-├─────────────────────────────────────────────────────────────────────────────┤
-│                                                                             │
-│   USER INPUT                                                                │
-│   Entity Name + Interaction Text (meeting notes, emails, CRM updates)       │
-│            │                                                                │
-│            ▼                                                                │
-│   ┌──────────────────┐        ┌──────────────────────────────────┐          │
-│   │  Domain Adapter  │        │         LLM Provider             │          │
-│   │  (YAML Config)   │        │   Groq → Gemini → Ollama         │          │
-│   │                  │        │         (fallback chain)          │          │
-│   │  • intents.yaml  │        └──────────────────────────────────┘          │
-│   │  • actions.yaml  │                       │                              │
-│   │  • rules.yaml    │◄──────────────────────┘                              │
-│   │  • knowledge.yaml│                                                      │
-│   └────────┬─────────┘                                                      │
-│            │  feeds all agents                                               │
-│            ▼                                                                │
-│   ╔═════════════════════════════════════════════════════════════╗            │
-│   ║              LANGGRAPH AGENT PIPELINE                      ║            │
-│   ║                  (SSE Streamed live to UI)                 ║            │
-│   ║                                                             ║            │
-│   ║  ┌──────────┐   ┌──────────┐   ┌────────────┐             ║            │
-│   ║  │✦ PLANNER │──▶│◈ CONTEXT │──▶│⬡ DEPENDENCY│             ║            │
-│   ║  │          │   │          │   │            │             ║            │
-│   ║  │Classify  │   │Search all│   │Map entity  │             ║            │
-│   ║  │intent &  │   │3 memory  │   │graph &     │             ║            │
-│   ║  │entities  │   │layers    │   │relations   │             ║            │
-│   ║  └──────────┘   └────┬─────┘   └─────┬──────┘             ║            │
-│   ║                      │ reads          │                    ║            │
-│   ║  ┌──────────┐   ┌────┴─────┐   ┌─────┴──────┐             ║            │
-│   ║  │⚑ CRITIC  │◀──│★ RECOMM. │◀──│◎ RISK      │             ║            │
-│   ║  │          │   │          │   │            │             ║            │
-│   ║  │Reflect & │   │Rank &    │   │Score       │             ║            │
-│   ║  │validate  │   │reason    │   │severity    │             ║            │
-│   ║  │quality   │   │actions   │   │& urgency   │             ║            │
-│   ║  └────┬─────┘   └──────────┘   └────────────┘             ║            │
-│   ║       │ flags LOW_CONFIDENCE / ESCALATE                    ║            │
-│   ╚═══════╪═════════════════════════════════════════════════════╝            │
-│            │                                                                │
-│            ▼                                                                │
-│   ┌─────────────────────────────────┐                                       │
-│   │    NBA (Next Best Actions)      │                                       │
-│   │    Ranked · Confidence scored   │                                       │
-│   │    Evidence-backed · Explained  │                                       │
-│   └────────────────┬────────────────┘                                       │
-│                    │                                                        │
-│                    ▼                                                        │
-│   ┌─────────────────────────────────┐                                       │
-│   │    HUMAN-IN-THE-LOOP (HITL)     │                                       │
-│   │    Approve  │  Reject + Reason  │                                       │
-│   └────────────────┬────────────────┘                                       │
-│                    │  writes decision back                                   │
-│                    ▼                                                        │
-│   ╔═════════════════════════════════════════════════╗                        │
-│   ║              3-LAYER MEMORY SYSTEM              ║                        │
-│   ║                                                 ║                        │
-│   ║  ┌─────────────┐  ┌─────────────┐  ┌────────┐ ║                        │
-│   ║  │ SQL Patterns│  │Vector Store │  │ Entity │ ║                        │
-│   ║  │             │  │             │  │ Graph  │ ║                        │
-│   ║  │issue→resol. │  │sentence-    │  │Network │ ║                        │
-│   ║  │success rates│  │transformers │  │X / RAG │ ║                        │
-│   ║  └─────────────┘  └─────────────┘  └────────┘ ║                        │
-│   ╚═════════════════════════════════════════════════╝                        │
-│            │  ▲                                                             │
-│            └──┘  feeds back into Context agent on next request              │
-└─────────────────────────────────────────────────────────────────────────────┘
+```mermaid
+flowchart TD
+    INPUT["📥 User Input\nEntity Name + Interaction Text\nmeeting notes · emails · CRM updates"]
+
+    subgraph CONFIG["⚙️ Domain Configuration"]
+        ADAPTER["Domain Adapter\nYAML Config\nintents · actions · rules · knowledge"]
+        LLM["LLM Provider\nGroq → Gemini → Ollama\nfallback chain"]
+    end
+
+    subgraph PIPELINE["🤖 LangGraph Agent Pipeline  —  SSE Streamed Live to UI"]
+        direction LR
+        P["✦ Planner\nClassify intent\n& keywords"]
+        C["◈ Context\nSearch 3 memory\nlayers"]
+        D["⬡ Dependency\nMap entity graph\n& blast radius"]
+        R["◎ Risk\nScore severity\n& urgency"]
+        REC["★ Recommender\nRank & reason\nactions"]
+        CR["⚑ Critic\nReflect &\nvalidate quality"]
+        P --> C --> D --> R --> REC --> CR
+    end
+
+    subgraph NBA["📋 Next Best Actions"]
+        NBA1["Ranked · Confidence Scored\nEvidence-Backed · LLM Explained"]
+    end
+
+    subgraph HITL["👤 Human-in-the-Loop"]
+        APPROVE["✓ Approve"]
+        REJECT["✕ Reject + Reason"]
+    end
+
+    subgraph MEMORY["🧠 3-Layer Memory System"]
+        M1["◎ SQL Patterns\nissue → resolution\nsuccess rates"]
+        M2["🔮 Vector Store\nsentence-transformers\ncosine similarity"]
+        M3["⬡ Entity Graph\nNetworkX / GraphRAG\nrelationship weights"]
+    end
+
+    INPUT --> CONFIG
+    CONFIG --> PIPELINE
+    LLM -.->|"powers Risk,\nRecommender,\nCritic"| PIPELINE
+    PIPELINE --> NBA
+    NBA --> HITL
+    APPROVE -->|"writes decision back"| MEMORY
+    REJECT -->|"embeds correction"| MEMORY
+    MEMORY -->|"feeds Context agent\non next request"| C
+
+    style PIPELINE fill:#1a1f35,stroke:#6366f1,color:#e2e8f0
+    style MEMORY fill:#0f1f18,stroke:#10b981,color:#e2e8f0
+    style CONFIG fill:#1a1520,stroke:#a855f7,color:#e2e8f0
+    style HITL fill:#1a1208,stroke:#f59e0b,color:#e2e8f0
+    style NBA fill:#0f1520,stroke:#818cf8,color:#e2e8f0
 ```
 
 ### The 6 Agents — What Each One Does
 
-```
-✦ PLANNER      Reads intents.yaml → classifies the interaction into a known intent
-               e.g. "churn_risk", "renewal_approaching", "candidate_rejection"
-                    │
-                    ▼
-◈ CONTEXT      Queries all 3 memory layers → finds past similar cases, semantic
-               matches, and entity history to build an evidence package
-                    │
-                    ▼
-⬡ DEPENDENCY   Walks the entity graph → identifies related entities and prior
-               decisions that may be impacted by this interaction
-                    │
-                    ▼
-◎ RISK         Reads rules.yaml → deterministic keyword triggers + LLM call
-               to assign severity: low / medium / high / critical
-                    │
-                    ▼
-★ RECOMMENDER  Reads actions.yaml → filters by intent, ranks by base priority
-               + memory boosts + semantic evidence, LLM generates 2-line reasoning
-                    │
-                    ▼
-⚑ CRITIC       Reviews top recommendation → flags LOW_CONFIDENCE if evidence
-               is thin, or ESCALATE if severity is critical with no clear path
-```
+| Agent | Responsibility | Key Output |
+|---|---|---|
+| **✦ Planner** | Reads `intents.yaml` → classifies the interaction into a known intent | `matched_intent`, `keywords_found` |
+| **◈ Context** | Queries all 3 memory layers → finds past similar cases, semantic matches, playbooks, CRM data | `semantic_memories`, `memory_patterns`, `playbook_matches` |
+| **⬡ Dependency** | Walks the entity graph → identifies related entities and blast radius | `affected_entities`, `blast_radius`, `graph_context` |
+| **◎ Risk** | Keyword triggers + LLM assessment → assigns severity level | `severity`, `risk_signals`, `risk_reasoning` |
+| **★ Recommender** | Ranks actions by confidence formula (base × severity × memory boosts), LLM writes 2-sentence reasoning | `ranked_actions` with evidence chains |
+| **⚑ Critic** | Reflects on top recommendation → flags `LOW_CONFIDENCE` or `ESCALATE` | `critique`, `critique_flag` |
 
 ---
 
